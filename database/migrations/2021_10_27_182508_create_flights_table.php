@@ -13,22 +13,43 @@ class CreateFlightsTable extends Migration
      */
     public function up()
     {
+
+        Schema::create('airlines', function (Blueprint $table) {
+            $table->id();
+            $table->string('name_airline');
+            $table->string('desc_business');
+            $table->boolean('disponibility');
+            $table->timestamps();
+        });
+
+
+
+
         Schema::create('flights', function (Blueprint $table) {
             $table->id();
-            $table->date('Hora_Despuegue');
-            $table->date('Hora_Llegada');
-            $table->unsignedBigInteger("ciudad_Origen");
-            $table->unsignedBigInteger("ciudad_Destino");
+            $table->unsignedBigInteger('airlines_id');
+
+            $table->date('hora_despuegue');
+            $table->date('hora_llegada');
+            
+
+
+            $table->unsignedBigInteger("ciudad_origen");
+            $table->unsignedBigInteger("ciudad_destino");
 
             /* FOREING */
+            $table->foreign('airlines_id')->references('id')->on('airlines');
+            
 
 
-            $table->foreign('ciudad_Origen')->references('id')->on('cities');
-            $table->foreign('ciudad_Destino')->references('id')->on('cities');
+            $table->foreign('ciudad_origen')->references('id')->on('cities');
+            $table->foreign('ciudad_destino')->references('id')->on('cities');
 
      
             $table->timestamps();
         });
+
+
     }
 
     /**
@@ -39,5 +60,7 @@ class CreateFlightsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('flights');
+        Schema::dropIfExists('airlines');
+
     }
 }

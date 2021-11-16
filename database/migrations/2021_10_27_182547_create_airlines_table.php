@@ -13,13 +13,7 @@ class CreateAirlinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('airlines', function (Blueprint $table) {
-            $table->id();
-            $table->string('name_airline');
-            $table->string('desc_business');
-            $table->boolean('disponibility');
-            $table->timestamps();
-        });
+       
     }
 
     /**
