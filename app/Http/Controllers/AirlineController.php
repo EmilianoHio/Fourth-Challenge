@@ -12,9 +12,9 @@ class AirlineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
-        $airlines = Airline::all();
-        return view('airlines.index', compact('airlines'));
+    public function index(Airline $airlines){
+        $airlines = $airlines->all();
+      return view('airlines.index', compact('airlines'));
     }
 
     /**
@@ -33,8 +33,16 @@ class AirlineController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
+
+        $request->validate([
+            'name_airline' => 'required|string|max:255',
+            'desc_business' => 'required|string|max:255',
+            'disponibility' => 'required|boolean',
+        ]);
+
         $airline = new Airline();
         $airline->name_airline = $request->name_airline;
+       //  $airline->name_city = $request->name_city;
         $airline->desc_business = $request->desc_business;
         $airline->disponibility = $request->disponibility;
         $airline->save();
@@ -71,9 +79,9 @@ class AirlineController extends Controller
      */
     public function update(Request $request, Airline $airline) {
         $request->validate([
-            'name_airline' => 'required',
-            'desc_business' => 'required',
-            'disponibility' => 'required',
+            'name_airline' => 'required|string|max:255',
+            'desc_business' => 'required|string|max:255',
+            'disponibility' => 'required|boolean',
         ]);
 
         $airline->update($request->all());

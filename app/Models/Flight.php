@@ -17,6 +17,6 @@ class Flight extends Model
     ];
     public function airlines()
     {
-        return $this->belongsTo(Airline::class, );
+        return $this->belongsTo(Airline::class);
     }
 }

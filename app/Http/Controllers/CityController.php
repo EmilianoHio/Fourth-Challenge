@@ -13,8 +13,8 @@ class CityController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $cities = City::all();
-        return view('cities.index', compact('cities'));
+     $cities = City::all();
+     return view('cities.index', compact('cities'));
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Airline_City;
 use App\Http\Controllers\AirlineController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\HomeController;
@@ -22,6 +23,8 @@ Route::resource('airlines', AirlineController::class);
 
 Route::resource('cities',CityController::class);
 
+
+Route::resource('airlinecity',Airline_City::class);
 
 /*
 Route::get('cities', [CityController::class , 'index'])->name('cities.index');

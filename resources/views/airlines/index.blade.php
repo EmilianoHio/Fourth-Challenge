@@ -22,6 +22,7 @@
     <tr>
       <th scope="col">id</th>
       <th scope="col">Airline</th>
+      <th scope="col">City Airline</th>
       <th scope="col">Description</th>
       <th scope="col">Disponibility</th>
       <th scope="col">  <a href="{{route('airlines.create')}}" class="btn btn-success" >create Airlines</a></th>
@@ -33,6 +34,7 @@
     <tr>
       <th scope="row">{{$airline->id}}</th>
       <td>{{$airline->name_airline}}</td>
+      <td>{{$airline->city->name_city}}</td>
       <td>{{$airline->desc_business}}</td>
       <td>  @if ($airline->disponibility == 1)
         <span>Disponibility</span>

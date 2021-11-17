@@ -16,10 +16,13 @@ class CreateFlightsTable extends Migration
 
         Schema::create('airlines', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('city_id');
             $table->string('name_airline');
             $table->string('desc_business');
             $table->boolean('disponibility');
             $table->timestamps();
+
+            $table->foreign('city_id')->references('id')->on('cities');
         });
 
 
@@ -34,16 +37,14 @@ class CreateFlightsTable extends Migration
             
 
 
-            $table->unsignedBigInteger("ciudad_origen");
-            $table->unsignedBigInteger("ciudad_destino");
+            $table->unsignedBigInteger("ciudad_origen_id");
+            $table->unsignedBigInteger("ciudad_destino_id");
 
             /* FOREING */
             $table->foreign('airlines_id')->references('id')->on('airlines');
-            
 
-
-            $table->foreign('ciudad_origen')->references('id')->on('cities');
-            $table->foreign('ciudad_destino')->references('id')->on('cities');
+            $table->foreign('ciudad_origen_id')->references('id')->on('cities');
+            $table->foreign('ciudad_destino_id')->references('id')->on('cities');
 
      
             $table->timestamps();
