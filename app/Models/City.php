@@ -11,9 +11,8 @@ class City extends Model{
     protected $table = 'cities';
     protected $fillable = ['name_city'];
 
-
-    // relation uno a muchos
-    public function Airlines()
+    
+    public function airlines()
     {
         return $this->hasMany(Airline::class, 'city_id');
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Airline;
+use App\Models\City;
 use Illuminate\Http\Request;
 
 class AirlineController extends Controller
@@ -22,9 +23,11 @@ class AirlineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(){
-        return view('airlines.create');
-    }
+    public function create(Airline $airlines, City $cities){
+        $airlines = $airlines->all();
+        $cities = $cities->all();
+        return view('airlines.create', compact('airlines', 'cities')); 
+       }
 
     /**
      * Store a newly created resource in storage.
@@ -32,7 +35,7 @@ class AirlineController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
+    public function store(Request $request, City $cities){
 
         $request->validate([
             'name_airline' => 'required|string|max:255',
@@ -42,6 +45,7 @@ class AirlineController extends Controller
 
         $airline = new Airline();
         $airline->name_airline = $request->name_airline;
+        $airline->city_id = $request->city_id;
        //  $airline->name_city = $request->name_city;
         $airline->desc_business = $request->desc_business;
         $airline->disponibility = $request->disponibility;

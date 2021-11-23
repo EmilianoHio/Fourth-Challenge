@@ -18,7 +18,12 @@
         <input type="text" class="form-control" name="desc_business" id="desc_business" placeholder="Name City">
          <br>
         
-
+         <select class="form-control" name="name_city" id="disponibility">
+             @foreach ($airlines as $airline)
+                    <option value="{{$airline->id}}">{{$airline->city->name_city}}</option>
+             @endforeach
+         </select>
+            <br>
         <div class="form-group">
             <label>Disponibility</label>
 
